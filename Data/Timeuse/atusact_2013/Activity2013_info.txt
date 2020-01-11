@@ -1,0 +1,16 @@
+
+The data file atusact_2013.dat (2013 Activity file) contains 31 variables and 215,576 observations.  
+
+For more information about this file, see the ATUS 2013 Interview Data Dictionary, available online at:  http://www.bls.gov/tus/atusintcodebk13.pdf.
+
+In addition to the data file, four computer programs are contained in atusact_2013.zip.  If you have SPSS, SAS, or Stata software, you may use these programs to read the data into your statistical software package.  The programs include variable and value labels for most variables.  For information about unlabeled values, please refer to the data dictionary.
+
+The file "atusact8_2013.sps" reads the data into SPSS; in this version, some variable names have been re-named such that their length does not exceed 8.
+
+The file "atusact_2013.sps" reads the data into SPSS; some variable names exceed length 8.
+
+The file "atusact_2013.sas" reads the data into SAS.
+
+The file "atusact_2013.do" reads the data into Stata.
+
+If you have SAS, SPSS, or Stata software, open the corresponding program, edit the infile (in SAS), file (in SPSS), or insheet (in Stata) statement to reference the data file on your computer, and run the program. 

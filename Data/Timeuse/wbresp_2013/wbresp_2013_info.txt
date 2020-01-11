@@ -1,0 +1,19 @@
+
+The data file wbresp_2013.dat (2013 ATUS Well-being Module Respondent file) contains 16 variables and 10,378 observations. 
+
+For more information on the 2013 ATUS Well-being Module Respondent file, please see the ATUS Well-being Module Data Dictionary (available at: http://www.bls.gov/tus/wbmintcodebk.pdf).   
+
+In addition to the data file, four computer programs are contained in wbresp_2013.zip.  If you have SPSS, SAS, or Stata software, you may use these programs to read the data into your statistical software package.  
+
+The programs include variable and value labels for most variables.  For information about unlabeled values, please refer to the data dictionary.
+
+The file "wbresp8_2013.sps" reads the data into SPSS; in this version, some variable names have been re-named such that their length does not exceed 8.
+
+The file "wbresp_2013.sps" reads the data into SPSS; some variable names exceed length 8.
+
+The file "wbresp_2013.sas" reads the data into SAS.
+
+The file "wbresp_2013.do" reads the data into Stata.
+
+If you have SAS, SPSS, or Stata software, open the corresponding program, edit the infile (in SAS), file (in SPSS) or insheet (in Stata) statement to reference the data file on your computer, and run the program. 
+

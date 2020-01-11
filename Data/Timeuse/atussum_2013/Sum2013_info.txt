@@ -1,0 +1,26 @@
+
+The file atussum_2013.dat (2013 Activity Summary file) contains 413 variables and 11,385 observations.
+
+The 2013 Activity Summary file contains data for the total number of minutes that each respondent spent doing each 6-digit activity.  Each record corresponds to a unique respondent, as indicated by a unique value of the variable TUCASEID. 
+
+The variable names identify activities by their 6-digit codes.  The letter "t" precedes the 6-digit codes.  The first and second digits of the 6-digit code correspond to the variable tutier1code; the third and fourth digits of the 6-digit code correspond to the variable tutier2code; and, the fifth and sixth digits of the 6-digit code correspond to the variable tutier3code.  For example, the variable "t040102" refers to the activity with TUTIER1CODE=04, TUTIER2CODE=01, and TUTIER3CODE=02.  
+As documented in the ATUS 2013 Coding Lexicon (http://www.bls.gov/tus/lexiconwex2013.pdf), activity code "040102" corresponds to "Caring for and helping nonhousehold members/Caring for and helping nonhousehold children/Reading to or with nonhousehold children." See Chapter 5 of the ATUS User's Guide (http://www.bls.gov/tus/atususersguide.pdf) for more information about the ATUS Coding Lexicon. 
+All "t" activity variables on this file correspond to an activity that at least one survey respondent reported doing for one minute or more.  
+
+In addition to the activity code variables (t010101...t509999), the file atussum_2013.dat includes selected variables (such as age, sex, and labor force status of the respondent) from the Respondent and ATUS-CPS files.  The definitions for variables that begin with the letter "P" or "G" appear in the 2013 ATUS-CPS Data Dictionary, available at http://www.bls.gov/tus/atuscpscodebk13.pdf; the definitions 
+for variables that begin with the letter "T" (other than t010101...t509999) appear in the 2013 ATUS Interview Data Dictionary, available at 
+http://www.bls.gov/tus/atusintcodebk13.pdf.  
+
+In addition to the data file, four computer programs are contained in atussum_2013.zip.  If you have SPSS, SAS, or Stata software, you may use these programs to read the data into your statistical software package.  
+
+The file "atussum8_2013.sps" reads the data into SPSS; in this version, some variable names have been re-named such that their length does not exceed 8.
+
+The file "atussum_2013.sps" reads the data into SPSS; some variable names exceed length 8.
+
+The file "atussum_2013.sas" reads the data into SAS.
+
+The file "atussum_2013.do" reads the data into Stata.
+
+If you have SAS, SPSS, or Stata software, open the corresponding program, edit the infile (in SAS), file (in SPSS), or insheet (in Stata) statement to reference the data file on your computer, and run the program. 
+
+
