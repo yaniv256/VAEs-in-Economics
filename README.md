@@ -2,7 +2,9 @@
 
 # VAEs-in-Economics
 
-This project aims to explore applications of Variational Auto-Encoders in Economics. 
+This project aims to explore applications of Variational Auto-Encoders in Economics. A VAE is a type of neural network that aims to condense data in a way that preserves as much detail as possible. We take data and run it through the neural network. What we ask the network to do for us is to give us back the same data that we put in. So how is this productive? If it gives us back the same data that we put in, what’s the goal? Well, the network we use for this task is not plain vanilla. The way it’s special is that it has a bottleneck hiding in the middle. And bottleneck doesn’t mean bad. It’s a good thing. It’s what you want. The bottleneck forces the neural network to find a way to take all the complexity of the data and squeeze it into one or two numbers. The bottleneck is exactly where the magic happens. 
+
+![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/VAE.png?raw=true)
 
 In our first effort, we're focusing on a fascinating data set called the American Time Use Survey, a government survey conducted by the US Bureau of Labor Statistics (BLS). The respondents are asked ahead of time to write down their activities during a given 24-hour period. BLS representatives classify the activities of the respondents into 389 different categories, minute-by-minute. Every year’s survey has approximately 11,500 records. The survey is conducted on a rolling basis, so it’s representative of both the population, the days of the week, and the seasons. 
 
