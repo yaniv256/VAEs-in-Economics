@@ -20,6 +20,8 @@ In our first effort, we're focusing on a fascinating data set called the America
 
 The question we’re going to ask about this incredibly intimate window into people’s lives is can we identify overarching types for describing the overwhelming diversity and baroque intricacy of how people choose to spend their day? As we explore how to decomplexify this richness, we will keep an eye on how the same process can be applied to customer segmentation. Marketing professionals think this kind of micro-segmentation will change the world. How? Because in the future we will be tailoring products to narrower and narrower groups of customers. Continuously finding needs that were not recognized until detected by real-time algorithms processing incoming data.
 
+## Preliminary Results 
+
 Here's a plot of the resulting encoding for the 2013 ATUS data:
 
 ![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/type_plot.png?raw=true)
