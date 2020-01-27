@@ -4,7 +4,7 @@
 
 This project aims to explore applications of Variational Auto-Encoders (VAEs) in Economics. A VAE is a type of neural network that condenses data in a way that preserves as much detail as possible. We take some data and run it through the neural network, and what we ask the network to do for us is to give us back the same data that we put in. The network we use for this task is not plain vanilla. The way it’s special is that it has a bottleneck hiding in the middle.
 
-![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/VAE.png?raw=true =700x300)
+![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/VAE.png?raw=true)
 
 Once we complete training, we’re actually not going to be using the whole network. The useful part is the portion from the input to the bottleneck, and that’s it. The first portion of the trained network is all we need in order to decomplexify. The second portion of the network would be useful if we wanted to complexify.
 
