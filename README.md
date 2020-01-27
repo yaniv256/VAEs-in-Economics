@@ -27,12 +27,11 @@ Here's a plot of the resulting encoding for the 2013 ATUS data:
 ![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/type_plot.png?raw=true)
 
 Ranges identified:
--1.67 to -0.67   childcare to social (work)
--0.67 to -0.17   job to health issue
--0.17 to 0.33    health issue to childcare (non-work)
-0.33 to 0.83     childcare to shopping (non-work)
-0.83 to 2.33     non-work to work (shopping)
 
-
-
-
+| Range       | Variation    | Stable |
+| ------------- |:-------------:| -----:|
+| -1.67 to -0.67  | childcare to social | non-shopping, work |
+| -0.67 to -0.17  | work to health issue | non-shopping |
+| -0.17 to 0.33 | health issue to childcare | non-shopping, non-work |
+| 0.33 to 0.83 | childcare to shopping | non-work |
+| 0.83 to 2.33 | non-work to work | shopping |
