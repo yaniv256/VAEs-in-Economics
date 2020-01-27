@@ -29,7 +29,7 @@ Here's a plot of the resulting encoding for the 2013 ATUS data:
 Ranges identified:
 
 | Range       | Variation    | Stable |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | -1.67 to -0.67  | childcare to social | non-shopping, work |
 | -0.67 to -0.17  | work to health issue | non-shopping |
 | -0.17 to 0.33 | health issue to childcare | non-shopping, non-work |
