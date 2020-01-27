@@ -8,7 +8,7 @@ This project aims to explore applications of Variational Auto-Encoders (VAEs) in
 
 Once we complete training, we’re actually not going to be using the whole network. The useful part is the portion from the input to the bottleneck, and that’s it. The first portion of the trained network is all we need in order to decomplexify. The second portion of the network would be useful if we wanted to complexify.
 
-Setting the bottleneck to one number is the highest level of decomplexification possible, taking the VAE to its fullest potential, so that's what we're doing at the moment.
+Setting the bottleneck to just one number is the highest level of decomplexification possible. It takes the VAE to its fullest potential. That's what we're trying to do.
 
 ## American Time-Use Archetypes
 
