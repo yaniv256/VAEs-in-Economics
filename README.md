@@ -1,6 +1,7 @@
 ![Painted Stones](Resources/PaintedStones.png)
 
 # VAEs-in-Economics
+Sponsored by: [EasyAsPie.ai](http://easyaspie.ai/home)
 
 This project aims to explore applications of Variational Auto-Encoders (VAEs) in Economics. A VAE is a type of neural network that condenses data in a way that preserves as much detail as possible. We take some data and run it through the neural network, and what we ask the network to do for us is to give us back the same data that we put in. The network we use for this task is not plain vanilla. The way it’s special is that it has a bottleneck hiding in the middle.
 
