@@ -21,4 +21,8 @@ The question we’re going to ask about this incredibly intimate window into peo
 
 Here's a plot of the resulting encoding for the 2013 ATUS data:
 
+![Physical_care_for_hh_children](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Physical_care_for_hh_children.png?raw=true)
+
+![Food_and_drink_preparation](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Food_and_drink_preparation_.png?raw=true)
+
 ![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/type_plot.png?raw=true)
