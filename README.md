@@ -11,6 +11,8 @@ Once we complete training, we’re actually not going to be using the whole netw
 
 Setting the bottleneck to just one number is the highest level of decomplexification possible. It takes the VAE to its fullest potential. That's what we're trying to do.
 
+<img src="Resources/EqualSizedBins.jpg" width="480">
+
 ## American Time-Use Archetypes
 
 In our first application, we're focusing on a data set called the American Time Use Survey (ATUS), a government survey conducted by the US Bureau of Labor Statistics (BLS). The respondents are asked ahead of time to write down their activities during a given 24-hour period. BLS representatives classify the activities of the respondents into 389 different categories, minute-by-minute. Every year’s survey has approximately 11,500 records. The survey is conducted on a rolling basis, so it’s representative of both the population, the days of the week, and the seasons. 
