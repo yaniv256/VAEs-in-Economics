@@ -30,7 +30,7 @@ The question we’re going to ask about this incredibly intimate window into peo
 
 ## Preliminary Results 
 
-Here's a plot of the resulting encoding for the 2013 ATUS data:
+Selected plots of the resulting encoding for the 2013 ATUS data:
 
 ![Physical_care_for_hh_children](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Physical_care_for_hh_children.png?raw=true)
 
