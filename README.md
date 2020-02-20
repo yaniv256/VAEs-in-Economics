@@ -32,10 +32,10 @@ The question we’re going to ask about this incredibly intimate window into peo
 
 Selected plots of the resulting encoding for the 2013 ATUS data:
 
+![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/type_plot.png?raw=true)
+
 ![Physical_care_for_hh_children](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Physical_care_for_hh_children.png?raw=true)
 
 ![Socializing_and_communicating_with_others](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Socializing_and_communicating_with_others.png?raw=true)
 
 ![Research_homework_for_class_for_degree__certification__or_licensure](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/Work__main_job_Research_homework_for_class_for_degree__certification__or_licensure.png?raw=true)
-
-![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/type_plot.png?raw=true)
