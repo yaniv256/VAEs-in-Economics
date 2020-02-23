@@ -22,7 +22,7 @@ class PlotEpoch(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
         
       if epoch % 100 == 0:
-        plot_types(decoder,qt, n_activity=60, n_type= 48, scaler = True, spacing=-0.035)
+        plot_types(self.decoder,qt, n_activity=60, n_type= 48, scaler = True, spacing=-0.035)
  
         
 plot_epoch = PlotEpoch()
@@ -158,8 +158,10 @@ def make_vae(
   vae = Model(input_img, y)
 
   vae.compile(optimizer='adam', loss=None) 
-  
-  return (vae, encoder, decoder)
+  vae.encoder = encoder
+  vae.decoder = decoder
+
+  return vae
 
 
 import matplotlib.pyplot as plt
