@@ -60,7 +60,7 @@ def make_vae( full_data,
 
   input_data = layers.GaussianNoise(0.03*(1-K.mean(is_validation)))(input_data)
 
-  x = layers.Dense(dense_width, activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
+  x = layers.Dense(dense_width, activation=layers.swish(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)), \
                    kernel_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty))(input_data)
@@ -70,13 +70,13 @@ def make_vae( full_data,
   x = layers.Dropout(encoder_dropout_rate)(x)
 
   for i in range(hidden_n):
-    x = layers.Dense(dense_width, activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
+    x = layers.Dense(dense_width, activation=layers.swish(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)), 
                      kernel_regularizer=regularizers.l1_l2(
                         l1=l1_penalty,l2=l2_penalty))(x)
     x = layers.Dropout(encoder_dropout_rate)(x)
 
-  z_mean = layers.Dense(latent_dim, activation=layers.sigmoid())(x)
+  z_mean = layers.Dense(latent_dim)(x)
   z_log_var = layers.Dense(latent_dim)(x)
   
   # Reduce sampling variance to near zero on validation (idea credit: Shahaf Grofit)
@@ -121,7 +121,7 @@ def make_vae( full_data,
   decoder_input = layers.Input(K.int_shape(z)[1:])
   print(decoder_input.shape)
   x = layers.Dense(dense_width, 
-                   activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
+                   activation=layers.swish(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)),
                    kernel_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty))(decoder_input)
@@ -129,7 +129,7 @@ def make_vae( full_data,
 
   for i in range(hidden_n):
     x = layers.Dense(dense_width, 
-                     activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
+                     activation=layers.swish(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)),
                       kernel_regularizer=regularizers.l1_l2(
                         l1=l1_penalty,l2=l2_penalty))(x)
@@ -137,7 +137,7 @@ def make_vae( full_data,
 
 
   x = layers.Dense(img_shape[0]-1, 
-                   activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
+                   activation=layers.swish(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)),
                     kernel_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty))(x)
