@@ -25,8 +25,7 @@ class PlotEpoch(keras.callbacks.Callback):
       if epoch % 100 == 0:
         plot_types(encoder = self.model.encoder, 
                    decoder = self.model.decoder, 
-                   data = self.model.full_data, 
-                   n_activity=60, n_type= 48, scaler = True, spacing=-0.035)
+                   data = self.model.full_data)
         
 plot_epoch = PlotEpoch()
 
@@ -183,11 +182,12 @@ sns.set_style("darkgrid")
 
 
 def plot_types(encoder, decoder, data, 
-               n_type = 40, each_hight = 20, approx_width=400, frac_width =0.40, 
-               n_activity =  22, lowest_percentile= 0.1, 
-               highest_percentile = 99.9, figsize=(10, 20),
-               cmap='viridis', n_xlabels=9, spacing = -0.10, 
-               hist_size=0.15, scaler=True):
+               n_type = 60, each_hight = 20, approx_width=400, 
+               frac_width =0.55, 
+               n_activity =  90, lowest_percentile= 1, 
+               highest_percentile = 99, figsize=(10, 37),
+               cmap='viridis', n_xlabels=13, spacing = -0.005, 
+               hist_size=0.08, scaler=True):
   
   # definitions for the axes
   left, width = 0.05, frac_width
