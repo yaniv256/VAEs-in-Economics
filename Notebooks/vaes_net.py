@@ -292,12 +292,13 @@ def encode_plot2d(
   filtered=pd.DataFrame(scaler.fit_transform(filtered))
   filtered.columns = data.columns
   
-  sns.kdeplot(data[x_col], data[y_col], cmap="Blues", shade=True, bw=.2, cut=0.1, legend=True, ax=ax)
+  sns.kdeplot(data[x_col], data[y_col], cmap="Blues", shade=True, bw=.2, 
+              cut=0.1, legend=True)
   sns.lineplot(x = filtered[x_col], y=filtered[y_col], linewidth=1.5, 
                 color= '#8E3179', sort=False)
   
   for i in range(0,n,step):
-      ax.text(filtered[x_col][i]+0.01, filtered[y_col][i]+0.01, np.round(grid_x[i],1), 
+      plt.text(filtered[x_col][i]+0.01, filtered[y_col][i]+0.01, np.round(grid_x[i],1), 
               horizontalalignment='left', size='small', color='black')
   
   plt.savefig(x_col+'_'+y_col+'.png')
