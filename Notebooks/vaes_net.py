@@ -13,6 +13,7 @@ from tensorflow import set_random_seed
 from numpy.random import seed
 
 import numpy as np
+import pandas as pd
 
 epochs = 500
 batch_size = 128     # Batch size is 32 instead of 16.
@@ -22,8 +23,10 @@ class PlotEpoch(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
         
       if epoch % 100 == 0:
-        plot_types(self.decoder,qt, n_activity=60, n_type= 48, scaler = True, spacing=-0.035)
- 
+        plot_types(encoder = self.model.encoder, 
+                   decoder = self.model.decoder, 
+                   data = self.model.full_data, 
+                   n_activity=60, n_type= 48, scaler = True, spacing=-0.035)
         
 plot_epoch = PlotEpoch()
 
@@ -37,7 +40,7 @@ callback_list = [
                  plot_epoch
 ]
 
-def make_vae( 
+def make_vae( full_data,  
     img_shape = (389+1, ),
     latent_dim = 1, 
     dense_width = 1024,
@@ -160,6 +163,7 @@ def make_vae(
   vae.compile(optimizer='adam', loss=None) 
   vae.encoder = encoder
   vae.decoder = decoder
+  vae.full_data = full_data
 
   return vae
 
@@ -173,7 +177,8 @@ import seaborn as sns
 sns.set()
 sns.set_style("darkgrid")
 
-def plot_types(decoder, data, n_type = 40, each_hight = 20, approx_width=400, 
+def plot_types(encoder, decoder, data, 
+               n_type = 40, each_hight = 20, approx_width=400, 
                n_activity =  22, lowest_percentile= 0.1, 
                highest_percentile = 99.9, figsize=(10, 20),
                cmap='viridis', n_xlabels=9, spacing = -0.10, scaler=True):
@@ -207,8 +212,9 @@ def plot_types(decoder, data, n_type = 40, each_hight = 20, approx_width=400,
   # We need to add a column of ones to indicate validation
   test_examples = data.shape[0]
   flag_1 = np.ones((test_examples,1),dtype=data.values.dtype)
-  data = np.concatenate((data.values,flag_1),axis=-1)
-  encoded_data=encoder.predict(data)
+  data_mat = np.concatenate((data.values,flag_1),axis=-1)
+  encoded_data=encoder.predict(data_mat)
+
 
   lowest=np.percentile(encoded_data, lowest_percentile)
   highest=np.percentile(encoded_data, highest_percentile)
@@ -232,7 +238,7 @@ def plot_types(decoder, data, n_type = 40, each_hight = 20, approx_width=400,
   im = ax_scatter.imshow(figure, cmap=cmap)
   plt.colorbar(im, ax= ax_colorbar, orientation='horizontal', fraction=1)
 
-  prec = pd.DataFrame(np.percentile(df,[50, 75, 95, 99],axis=0))
+  # prec = pd.DataFrame(np.percentile(df,[50, 75, 95, 99],axis=0))
 
   # ax_scatter.text(1.02*n_type*each_width,
   #                 0.8*each_hight -each_hight, '50%  75%  95%  99%', fontsize=14)
@@ -245,8 +251,7 @@ def plot_types(decoder, data, n_type = 40, each_hight = 20, approx_width=400,
                     #                                          prec.iloc[1,i]/60,
                     #                                          prec.iloc[2,i]/60,
                     #                                          prec.iloc[3,i]/60) + 
-                    df.columns[i].replace("Please drag and drop to rank your favorite summertime activities to watch/attend/participate in. - ", "")
-, fontsize=14)
+                    data.columns[i], fontsize=14)
 
   bins=np.append(grid_x-(grid_x[1]-grid_x[0])/2,
                  grid_x[n_type-1]+(grid_x[1]-grid_x[0])/2)
