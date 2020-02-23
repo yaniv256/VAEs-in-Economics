@@ -57,14 +57,8 @@ def make_vae( full_data,
   is_validation = input_img[:,-1] 
   input_data = input_img[:,:-1]
 
-#  noise = K.random_normal(shape=input_data.shape,stddev=3)#)
   input_data = layers.GaussianNoise(0.03*(1-K.mean(is_validation)))(input_data)
 
-  # Test the PReLU
-
-  # x = layers.Dense(dense_width, activation='relu',
-  #                 kernel_regularizer=regularizers.l1_l2(
-  #                     l1=l1_penalty,l2=l2_penalty))(input_data)
   x = layers.Dense(dense_width, activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)), \
                    kernel_regularizer=regularizers.l1_l2(
@@ -219,8 +213,6 @@ def plot_types(encoder, decoder, data,
   lowest=np.percentile(encoded_data, lowest_percentile)
   highest=np.percentile(encoded_data, highest_percentile)
 
-  #print(lowest,highest)
-
   grid_x = np.linspace(lowest, highest, n_type)
 
   for i, xi in enumerate(grid_x):
@@ -273,5 +265,40 @@ def plot_types(encoder, decoder, data,
 
   plt.show()
 
-#plot_types(decoder,qt, n_activity=60, n_type= 32, scaler = True, spacing=-0.035);
 
+def encode_plot2d(
+    encoder, 
+    decoder,
+    data,
+    x_col = 'Work__main_job',
+    y_col = 'Physical_care_for_hh_children',
+    lowest_percentile=1,
+    highest_percentile = 99,
+    n=70,
+    step=10):
+
+  test_examples = data.shape[0]
+  flag_1 = np.ones((test_examples,1),dtype=data.values.dtype)
+  data_mat = np.concatenate((data.values,flag_1),axis=-1)
+  encoded_data=encoder.predict(data_mat)
+
+  lowest=np.percentile(encoded_data, lowest_percentile)
+  highest=np.percentile(encoded_data, highest_percentile)
+
+  grid_x = np.linspace(lowest, highest, n)
+
+  filtered=pd.DataFrame((decoder.predict(grid_x)))
+  scaler = MinMaxScaler()
+  filtered=pd.DataFrame(scaler.fit_transform(filtered))
+  filtered.columns = data.columns
+  
+  sns.kdeplot(data[x_col], data[y_col], cmap="Blues", shade=True, bw=.2, cut=0.1, legend=True, ax=ax)
+  sns.lineplot(x = filtered[x_col], y=filtered[y_col], linewidth=1.5, 
+                color= '#8E3179', sort=False)
+  
+  for i in range(0,n,step):
+      ax.text(filtered[x_col][i]+0.01, filtered[y_col][i]+0.01, np.round(grid_x[i],1), 
+              horizontalalignment='left', size='small', color='black')
+  
+  plt.savefig(x_col+'_'+y_col+'.png')
+  plt.show()
