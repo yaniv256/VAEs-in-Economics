@@ -32,8 +32,8 @@ plot_epoch = PlotEpoch()
 callback_list = [
                  keras.callbacks.ReduceLROnPlateau(
                      monitor = 'val_loss',
-                     factor = 0.9,
-                     patience = 30,
+                     factor = 0.5,
+                     patience = 100,
                      verbose =1 #true
                  ),
                  plot_epoch
