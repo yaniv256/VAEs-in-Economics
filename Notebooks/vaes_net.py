@@ -136,9 +136,7 @@ def make_vae( full_data,
     x = layers.Dropout(decoder_dropout_rate)(x)
 
 
-  x = layers.Dense(img_shape[0]-1, 
-                   activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
-                      l1=l1_penalty,l2=l2_penalty)),
+  x = layers.Dense(img_shape[0]-1,
                     kernel_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty))(x)
 
