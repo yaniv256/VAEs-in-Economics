@@ -40,6 +40,8 @@ callback_list = [
                  plot_epoch
 ]
 
+
+
 def make_vae( full_data,  
     img_shape = (389+1, ),
     latent_dim = 1, 
@@ -162,6 +164,10 @@ def make_vae( full_data,
   return vae
 
 
+
+
+
+
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 from sklearn.preprocessing import StandardScaler
@@ -171,20 +177,25 @@ import seaborn as sns
 sns.set()
 sns.set_style("darkgrid")
 
+
+
+
+
+
 def plot_types(encoder, decoder, data, 
-               n_type = 40, each_hight = 20, approx_width=400, 
+               n_type = 40, each_hight = 20, approx_width=400, frac_width =0.40, 
                n_activity =  22, lowest_percentile= 0.1, 
                highest_percentile = 99.9, figsize=(10, 20),
-               cmap='viridis', n_xlabels=9, spacing = -0.10, scaler=True):
+               cmap='viridis', n_xlabels=9, spacing = -0.10, 
+               hist_size=0.15, scaler=True):
   
   # definitions for the axes
-  left, width = 0.05, 0.40
+  left, width = 0.05, frac_width
   bottom, height = 0.025, 0.65
   
-
   rect_scatter = [left, bottom, width, height]
-  rect_histx = [left, bottom + height + spacing, width, 0.15]
-  rect_colorbar = [left+width+0.1, bottom + height + spacing +0.05, width, 0.03]
+  rect_histx = [left, bottom + height + spacing, width, hist_size]
+  rect_colorbar = [left+width+0.1, bottom + height + spacing +0.01, width, 0.02]
 
   # start with a rectangular Figure
   plt.figure(figsize=figsize)
@@ -255,15 +266,21 @@ def plot_types(encoder, decoder, data,
   ax_scatter.set_yticks([])
 
   ax_histx.set_xticks( np.linspace(bins[0], bins[n_type], n_xlabels))
-  ax_histx.set_xticklabels(np.round(np.linspace(bins[0], bins[n_type], n_xlabels),
-                                      decimals=2))
   
   sns.distplot(encoded_data,ax=ax_histx,bins=bins,kde=False,
                rug=False).set_xlim(bins[0],bins[n_type])
-  
+
+  #ax_histx.set_xticklabels(np.round(np.linspace(bins[0], bins[n_type], n_xlabels),
+  #                                    decimals=2))
+
+
   plt.savefig('type_plot.png')
 
   plt.show()
+
+
+
+
 
 
 def encode_plot2d(
