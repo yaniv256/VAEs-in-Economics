@@ -76,7 +76,7 @@ def make_vae( full_data,
                         l1=l1_penalty,l2=l2_penalty))(x)
     x = layers.Dropout(encoder_dropout_rate)(x)
 
-  z_mean = layers.Dense(latent_dim)(x)
+  z_mean = layers.Dense(latent_dim, activation=layers.sigmoid())(x)
   z_log_var = layers.Dense(latent_dim)(x)
   
   # Reduce sampling variance to near zero on validation (idea credit: Shahaf Grofit)
