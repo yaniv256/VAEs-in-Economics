@@ -1,9 +1,6 @@
 import tensorflow.keras as keras
 keras.__version__
 
-from tensorflow.keras import backend as K   # Use tensorflow.keras
-K.clear_session()
-
 from tensorflow.keras import layers
 from tensorflow.keras import regularizers
 from tensorflow.keras import backend as K
@@ -15,33 +12,8 @@ from numpy.random import seed
 import numpy as np
 import pandas as pd
 
-epochs = 500
-batch_size = 128     # Batch size is 32 instead of 16.
-
-class PlotEpoch(keras.callbacks.Callback):
-
-    def on_epoch_end(self, epoch, logs={}):
-        
-      if epoch % 100 == 0:
-        plot_types(encoder = self.model.encoder, 
-                   decoder = self.model.decoder, 
-                   data = self.model.full_data)
-        
-plot_epoch = PlotEpoch()
-
-callback_list = [
-                 keras.callbacks.ReduceLROnPlateau(
-                     monitor = 'val_loss',
-                     factor = 0.9,
-                     patience = 30,
-                     verbose =1 #true
-                 ),
-                 plot_epoch
-]
-
-
-
-def make_vae( full_data,  
+def make_vae( full_data,
+    plot_types_args = {}, 
     img_shape = (389+1, ),
     latent_dim = 1, 
     dense_width = 1024,
@@ -52,6 +24,28 @@ def make_vae( full_data,
     entanglement_penalty = 2,
     hidden_n = 2):
   
+  class PlotEpoch(keras.callbacks.Callback):
+
+      def on_epoch_end(self, epoch, logs={}):
+          
+        if epoch % 100 == 0:
+          plot_types(encoder = self.model.encoder, 
+                    decoder = self.model.decoder, 
+                    data = self.model.full_data, 
+                    **plot_types_args)
+          
+  plot_epoch = PlotEpoch()
+
+  callback_list = [
+                  keras.callbacks.ReduceLROnPlateau(
+                      monitor = 'val_loss',
+                      factor = 0.9,
+                      patience = 30,
+                      verbose =1 #true
+                  ),
+                  plot_epoch
+  ]
+
   input_img = keras.Input(shape=img_shape)
 
   # The last input indicate to the network whether this is validation
@@ -157,6 +151,7 @@ def make_vae( full_data,
   vae.encoder = encoder
   vae.decoder = decoder
   vae.full_data = full_data
+  vae.callback_list = callback_list
 
   return vae
 
