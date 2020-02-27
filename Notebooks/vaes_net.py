@@ -22,7 +22,9 @@ def make_vae( full_data,
     encoder_dropout_rate=0.5,
     decoder_dropout_rate=0.5,
     entanglement_penalty = 2,
-    hidden_n = 2):
+    hidden_n = 2, 
+    lr_factor = 0.9,
+    lr_patience = 30):
   
   class PlotEpoch(keras.callbacks.Callback):
 
@@ -39,8 +41,8 @@ def make_vae( full_data,
   callback_list = [
                   keras.callbacks.ReduceLROnPlateau(
                       monitor = 'val_loss',
-                      factor = 0.9,
-                      patience = 30,
+                      factor = lr_factor,
+                      patience = lr_patience,
                       verbose =1 #true
                   ),
                   plot_epoch
