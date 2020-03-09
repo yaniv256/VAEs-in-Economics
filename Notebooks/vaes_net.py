@@ -24,13 +24,15 @@ def make_vae( full_data,
     entanglement_penalty = 2,
     hidden_n = 2, 
     lr_factor = 0.9,
-    lr_patience = 30):
+    lr_patience = 30,
+    plot_every_n = 100,
+    optimizer = keras.optimizers.Adam(lr=0.001) ):
   
   class PlotEpoch(keras.callbacks.Callback):
 
       def on_epoch_end(self, epoch, logs={}):
           
-        if epoch % 100 == 0:
+        if epoch % plot_every_n == 0:
           plot_types(encoder = self.model.encoder, 
                     decoder = self.model.decoder, 
                     data = self.model.full_data, 
@@ -149,7 +151,7 @@ def make_vae( full_data,
 
   vae = Model(input_img, y)
 
-  vae.compile(optimizer='adam', loss=None) 
+  vae.compile(optimizer=optimizer, loss=None) 
   vae.encoder = encoder
   vae.decoder = decoder
   vae.full_data = full_data
