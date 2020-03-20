@@ -96,11 +96,12 @@ def make_vae( full_data,
         z_decoded = K.flatten(z_decoded)
         xent_loss = keras.metrics.mse(x, z_decoded)
 
-        kl_loss = -5e-4 * K.mean(
-            z_log_var 
-            + K.min(1 - K.square(z_mean),0) 
-            #+ 1 - K.square(z_mean)     
-            - K.exp(z_log_var), axis=-1)
+        kl_loss = 1e-3 * 0.5 * K.mean(
+            K.exp(z_log_var)
+            + K.square(z_mean)
+            - z_log_var 
+            - 1     
+            , axis=-1)
         
         # Penalize for variance, but only in training 
         return K.mean(xent_loss + (1-is_validation)*kl_loss)
