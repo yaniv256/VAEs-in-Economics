@@ -21,16 +21,18 @@ def make_vae( full_data,
     l1_penalty=0.0,
     encoder_dropout_rate=0.5,
     decoder_dropout_rate=0.5,
-    entanglement_penalty = 2,
+    input_aug = 0.03,
     hidden_n = 2, 
     lr_factor = 0.9,
-    lr_patience = 30):
+    lr_patience = 30,
+    plot_every_n = 100,
+    optimizer = keras.optimizers.Adam(lr=0.001) ):
   
   class PlotEpoch(keras.callbacks.Callback):
 
       def on_epoch_end(self, epoch, logs={}):
           
-        if epoch % 100 == 0:
+        if epoch % plot_every_n == 0:
           plot_types(encoder = self.model.encoder, 
                     decoder = self.model.decoder, 
                     data = self.model.full_data, 
@@ -54,7 +56,7 @@ def make_vae( full_data,
   is_validation = input_img[:,-1] 
   input_data = input_img[:,:-1]
 
-  input_data = layers.GaussianNoise(0.03*(1-K.mean(is_validation)))(input_data)
+  input_data = layers.GaussianNoise(input_aug*(1-K.mean(is_validation)))(input_data)
 
   x = layers.Dense(dense_width, activation=layers.PReLU(alpha_regularizer=regularizers.l1_l2(
                       l1=l1_penalty,l2=l2_penalty)), \
@@ -94,9 +96,12 @@ def make_vae( full_data,
         z_decoded = K.flatten(z_decoded)
         xent_loss = keras.metrics.mse(x, z_decoded)
 
-        kl_loss = -5e-4 * K.mean(
-            1 + z_log_var - K.square(z_mean) 
-            - entanglement_penalty*K.exp(z_log_var), axis=-1)
+        kl_loss = 1e-3 * 0.5 * K.mean(
+            K.exp(z_log_var)
+            + K.square(z_mean)
+            - z_log_var 
+            - 1     
+            , axis=-1)
         
         # Penalize for variance, but only in training 
         return K.mean(xent_loss + (1-is_validation)*kl_loss)
@@ -149,7 +154,7 @@ def make_vae( full_data,
 
   vae = Model(input_img, y)
 
-  vae.compile(optimizer='adam', loss=None) 
+  vae.compile(optimizer=optimizer, loss=None) 
   vae.encoder = encoder
   vae.decoder = decoder
   vae.full_data = full_data
