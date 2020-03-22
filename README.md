@@ -32,5 +32,5 @@ The question we’re going to ask about this incredibly intimate window into peo
 
 Selected plots of the resulting encoding for the 2013 ATUS data:
 
-![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/plot_type_dist.png?raw=true)
+![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/plot_dist_type.png?raw=true)
 
