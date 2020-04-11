@@ -36,4 +36,4 @@ Selected plots of the resulting encoding for the 2013 ATUS data:
 
 
 
-<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://yaniv256.github.io/VAEs-in-Economics/Corona_rainbow.html" height="525" width="100%"></iframe>
+![Corona_rainbow](https://yaniv256.github.io/VAEs-in-Economics/Corona_rainbow.html)
