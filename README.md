@@ -35,5 +35,9 @@ Selected plots of the resulting encoding for the 2013 ATUS data:
 ![Variational Auto-Encoder](https://github.com/yaniv256/VAEs-in-Economics/blob/master/Resources/plot_dist_type.png?raw=true)
 
 
+## Dashboard for US Covid-19 Confirmed cases
 
-[Corona_rainbow](https://yaniv256.github.io/VAEs-in-Economics/Corona_rainbow.html)
+
+[Covid-19 last 20 days](https://yaniv256.github.io/VAEs-in-Economics/Corona_evolving_distribution.html)
+
+[Covid-19 by VAE types](https://yaniv256.github.io/VAEs-in-Economics/Corona_rainbow.html)
